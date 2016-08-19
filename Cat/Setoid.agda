@@ -14,7 +14,7 @@ record Setoid : Set where
   infix 4 _≈_
 
   field
-    {Carrier} : Set
+    Carrier : Set
     _≈_ : Carrier → Carrier → Set
     instance isEquivalence : IsEquivalence _≈_
 

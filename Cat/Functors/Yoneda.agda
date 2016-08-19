@@ -8,13 +8,12 @@ open import Cat.Categories.Setoid
 module Cat.Functors.Yoneda {{C}} (F : Functor C setoidCategory) where
 
 open import Cat.NaturalTransformation
-open import Cat.Setoid
-
-open import Data.Product using (_,_)
+open import Cat.Setoid renaming (module Setoid to S)
 
 open import Cat.Categories.Functor C setoidCategory
 open import Cat.Categories.Product functorCategory C
 open import Cat.Functors.Hom
+open import Cat.Setoids.Product
 
 open Functor
 open NaturalTransformation
@@ -28,13 +27,13 @@ instance
       { map = λ { {_} {G , b} (α , f) → record
         { _$_ = λ β → record
           { transform = λ {x} →
-              let open Category setoidCategory in -- a top-level "open Category {{…}}" hangs instance search?
+              let open Category setoidCategory in
                 transform α ∘ transform β ∘ map (homContrafunctor x) f
           ; naturality = λ {x y} g h →
               let open Category C in
-                Setoid.trans (G ∙ y)
+                S.trans (G ∙ y)
                   (cong-▸ (transform α) (cong-▸ (transform β) (sym assoc)))
-                  (Setoid.trans (G ∙ y)
+                  (S.trans (G ∙ y)
                     (cong-▸ (transform α) (naturality β g (h ∘ f)))
                     (naturality α g (transform β $ (h ∘ f))))
           }
@@ -46,7 +45,7 @@ instance
             cong-▸ (transform α) (cong-▸ (transform β) (cong-▸ (transform γ) (sym assoc))) }
       ; ≃-map-cong = λ
           { {F , a} {G , b} {α , f} {β , g} (p , q) γ {x} h → let open Category C in
-              Setoid.trans (G ∙ x)
+              S.trans (G ∙ x)
                 (p _)
                 (cong-▸ (transform β) (cong-▸ (transform γ) cong⟨∘ q ⟩)) }
       }

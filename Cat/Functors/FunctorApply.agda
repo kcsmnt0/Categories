@@ -5,15 +5,15 @@ open import Cat.Functor
 -- the functor from (Functor C D × C) to D
 module Cat.Functors.FunctorApply C D where
 
+open import Cat.NaturalTransformation
+
 open import Cat.Categories.Functor C D
 open import Cat.Categories.Product functorCategory C
-open import Cat.NaturalTransformation
+open import Cat.Setoids.Product
 
 open Category D
 open Functor
 open NaturalTransformation
-
-open import Data.Product using (_,_)
 
 instance
   functorApplyFunctor : Functor productCategory D

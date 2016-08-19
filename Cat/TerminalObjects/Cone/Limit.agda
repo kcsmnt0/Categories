@@ -16,14 +16,14 @@ instance
   terminalObjectLimit = record
     { terminus = cone
     ; isTerminalObject = record
-      { to = λ {c} → let open IsLimitFactor (factor c) in record
+      { to = λ {c} → let open IsLeftLimitFactor (factor c) in record
         { factorApex = rightLimitFactor
-        ; factorApexCommutes = limitFactorLeft
+        ; factorApexCommutes = rightLimitFactorCommutes
         }
       ; toUnique = λ {c}{f} →
           let
             open _▸_ f
-            open IsLimitFactor (factor c)
+            open IsLeftLimitFactor (factor c)
           in
             sym (rightLimitFactorUnique factorApexCommutes)
       }

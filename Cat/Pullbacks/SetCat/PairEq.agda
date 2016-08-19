@@ -79,7 +79,8 @@ instance
                 trans (coneMapCommutes ⟦ φ ⟧ x) (sym (coneMapCommutes ⟦ ψ ⟧ x))
             ; cong-▸ = λ p → cong-▸ (coneMap {α}) p , cong-▸ (coneMap {γ}) p
             }
-        ; limitFactorLeft = λ { {α} x → refl ; {β} x → sym (coneMapCommutes ⟦ φ ⟧ x) ; {γ} x → refl }
+        ; rightLimitFactorCommutes = λ { {α} x → refl ; {β} x → sym (coneMapCommutes ⟦ φ ⟧ x) ; {γ} x → refl }
         ; rightLimitFactorUnique = λ g x → sym (g {α} x) , sym (g {γ} x)
         }
+    ; ≃-rightLimitFactor-cong = λ p x → p {α} x , p {γ} x
     }

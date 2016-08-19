@@ -10,8 +10,7 @@ open import Cat.Setoid renaming (module Setoid to S)
 
 open import Cat.Functors.FunctorApply C setoidCategory
 open import Cat.Functors.Yoneda F
-
-open import Data.Product using (_,_)
+open import Cat.Setoids.Product
 
 open Category C
 open Functor

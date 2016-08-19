@@ -1,5 +1,5 @@
 open import Cat.Category
-open import Cat.Functor
+open import Cat.Functor hiding (_≊_)
 
 module Cat.Cone {{I C}} (D : Functor I C) where
 
@@ -8,8 +8,9 @@ open import Cat.Setoid
 
 open import Cat.Functors.Constant
 
+open Category {{…}}
+
 record IsCone (c : [ C ]) : Set where
-  open Category {{…}}
   open Functor D
 
   field

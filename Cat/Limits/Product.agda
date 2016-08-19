@@ -29,13 +29,14 @@ productLimit = record
       ; snd = coneMap {β}
       ; factorProduct = λ f g →
           let
-            open IsLimitFactor (factor (coneFromQuiver _ (λ { {α} → f ; {β} → g }) (λ ())))
+            open IsLeftLimitFactor (factor (coneFromQuiver _ (λ { {α} → f ; {β} → g }) (λ ())))
           in
             record
-              { leftProductFactor = rightLimitFactor
-              ; productFactorLeftFst = limitFactorLeft
-              ; productFactorLeftSnd = limitFactorLeft
-              ; leftProductFactorUnique = λ p q → rightLimitFactorUnique λ { {α} → p ; {β} → q }
+              { rightProductFactor = rightLimitFactor
+              ; rightProductFactorFstCommutes = rightLimitFactorCommutes
+              ; rightProductFactorSndCommutes = rightLimitFactorCommutes
+              ; rightProductFactorUnique = λ p q → rightLimitFactorUnique λ { {α} → p ; {β} → q }
               }
+      ; ≃-rightProductFactor-cong = λ p q → ≃-rightLimitFactor-cong λ { {α} → p ; {β} → q }
       }
   }

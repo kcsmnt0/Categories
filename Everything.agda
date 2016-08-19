@@ -1,19 +1,24 @@
 module Everything where
 
+import Cat.Bifunctor
 import Cat.NaturalTransformation
 import Cat.TerminalObject
+import Cat.Products.Setoid.Pair
 import Cat.Limit
 import Cat.Cones.FromNaturalTransformation
 import Cat.Cones.FromQuiver
 import Cat.NaturalTransformations.Identity
 import Cat.NaturalTransformations.Compose
 import Cat.NaturalTransformations.FromQuiver
+import Cat.Exponentials.Setoid.Function
 import Cat.Setoid
 import Cat.Setoids.Function
 import Cat.Setoids.Unit
 import Cat.Setoids.Empty
 import Cat.Setoids.SetSetoid
+import Cat.Setoids.Product
 import Cat.Cone
+import Cat.Bifunctors.Setoid.Product
 import Cat.NaturalIsomorphisms.FromNaturalTransformations
 import Cat.NaturalIsomorphisms.Yoneda
 import Cat.Categories.Setoid
@@ -41,15 +46,19 @@ import Cat.Pullbacks.SetCat.PairEq
 import Cat.Product
 import Cat.Endofunctors.Identity
 import Cat.Endofunctors.Setoid.Vec
+import Cat.Endofunctors.Fst
+import Cat.Endofunctors.Product
 import Cat.Endofunctors.SetCat.List
 import Cat.Isomorphism
 import Cat.InitialObject
 import Cat.NaturalIsomorphism
 import Cat.Functor
+import Cat.Exponential
 import Cat.Functors.SetToSetoid
 import Cat.Functors.Compose
 import Cat.Functors.FromQuiver
 import Cat.Functors.FunctorApply
 import Cat.Functors.Constant
+import Cat.Functors.FromBifunctor
 import Cat.Functors.Hom
 import Cat.Functors.Yoneda
