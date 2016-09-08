@@ -16,7 +16,7 @@ instance
   functorCategory : Category
   functorCategory = record
     { Carrier = Functor C D
-    ; _⇒_ = naturalTransformationSetoid
+    ; _⇒_ = λ F G → naturalTransformationSetoid {F} {G}
     ; isCategory = record
         { id = identityNaturalTransformation _
         ; _∘_ = _⊚_

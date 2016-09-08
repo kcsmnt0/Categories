@@ -5,6 +5,8 @@ module Cat.Category where
 open import Cat.Setoid
 open import Cat.Setoid public using (⟨_⟩)
 
+open import Relation.Binary.PropositionalEquality as ≡ using (_≡_)
+
 record IsCategory {O} (_⇒_ : O → O → Setoid) : Set where
   infixr 8 _∘_
   field
@@ -39,6 +41,9 @@ record IsCategory {O} (_⇒_ : O → O → Setoid) : Set where
   trans : ∀ {a b} {f g h : ⟨ a ⇒ b ⟩} → (a ⇒ b) ⟪ f ≈ g ⟫ → (a ⇒ b) ⟪ g ≈ h ⟫ → (a ⇒ b) ⟪ f ≈ h ⟫
   trans = Setoid.trans (_ ⇒ _)
 
+  infixr 1 _~_
+  _~_ = trans
+
   cong⟨_∘⟩ : ∀ {a b c} {f : ⟨ a ⇒ b ⟩} {g h : ⟨ b ⇒ c ⟩} → (b ⇒ c) ⟪ g ≈ h ⟫ → (a ⇒ c) ⟪ g ∘ f ≈ h ∘ f ⟫
   cong⟨ p ∘⟩ = cong⟨ p ∘ refl ⟩
 
@@ -65,7 +70,7 @@ record IsCategory {O} (_⇒_ : O → O → Setoid) : Set where
     ; cong⟨_∘_⟩ = λ q p → cong⟨ p ∘ q ⟩
     }
 
-  infixr 4 _≃_
+  infix 4 _≃_
   _≃_ : ∀ {a b} → ⟨ a ⇒ b ⟩ → ⟨ a ⇒ b ⟩ → Set
   f ≃ g = (_ ⇒ _) ⟪ f ≈ g ⟫
 
@@ -85,7 +90,7 @@ record Category : Set where
   infixr 0 _⇒_
 
   field
-    {Carrier} : Set
+    Carrier : Set
     _⇒_ : Carrier → Carrier → Setoid
     isCategory : IsCategory _⇒_
 

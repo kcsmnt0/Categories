@@ -7,6 +7,8 @@ open import Cat.Setoid
 
 open import Cat.Categories.Setoid using (setoidCategory)
 
+open import Relation.Binary.PropositionalEquality as ≡ using (_≡_)
+
 open Category {{…}}
 
 record IsFunctor {{C D}} (f : [ C ] → [ D ]) : Set where

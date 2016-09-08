@@ -22,7 +22,7 @@ instance
   -- i think this should be able to be at most half as ugly
   yonedaFunctor : Functor productCategory setoidCategory
   yonedaFunctor = record
-    { transport = λ { (F , a) → naturalTransformationSetoid {{C}} {{setoidCategory}} (homFunctor a) F }
+    { transport = λ { (F , a) → naturalTransformationSetoid {{C}} {{setoidCategory}} {homFunctor a} {F} }
     ; isFunctor = record
       { map = λ { {_} {G , b} (α , f) → record
         { _$_ = λ β → record

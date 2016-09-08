@@ -11,10 +11,11 @@ record IsIsomorphism {a b : [ C ]} (f : ⟨ a ⇒ b ⟩) (g : ⟨ b ⇒ a ⟩) :
 
 record Isomorphism (a b : [ C ]) : Set where
   field
-    -- todo: these are backwards (haha what)
-    left : ⟨ a ⇒ b ⟩
-    right : ⟨ b ⇒ a ⟩
-    isIsomorphism : IsIsomorphism left right
+    right : ⟨ a ⇒ b ⟩
+    left : ⟨ b ⇒ a ⟩
+    isIsomorphism : IsIsomorphism right left
+
+  open IsIsomorphism isIsomorphism public
 
 infix 0 _⇔_
 _⇔_ = Isomorphism

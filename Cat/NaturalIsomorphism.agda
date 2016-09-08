@@ -3,20 +3,18 @@ open import Cat.Functor
 
 module Cat.NaturalIsomorphism {{C D}} (F G : Functor C D) where
 
-open import Cat.Isomorphism
+open import Cat.Isomorphism public
 open import Cat.NaturalTransformation public
 open import Cat.Setoid
 
-open Isomorphism
-
 record NaturalIsomorphism : Set where
   field
-    transform : {a : [ C ]} → F ∙ a ⇔ G ∙ a
-    naturalityᴸ : Naturality F G (left transform)
-    naturalityᴿ : Naturality G F (right transform)
+    transformIso : {a : [ C ]} → F ∙ a ⇔ G ∙ a
+    naturalityᴿ : Naturality F G (Isomorphism.right transformIso)
+    naturalityᴸ : Naturality G F (Isomorphism.left transformIso)
 
   leftNaturalTransformation : NaturalTransformation F G
-  leftNaturalTransformation = record { naturality = naturalityᴸ }
+  leftNaturalTransformation = record { naturality = naturalityᴿ }
 
   rightNaturalTransformation : NaturalTransformation G F
-  rightNaturalTransformation = record { naturality = naturalityᴿ }
+  rightNaturalTransformation = record { naturality = naturalityᴸ }
