@@ -15,11 +15,11 @@ module Cat.NaturalIsomorphisms.FromNaturalTransformations
 
 naturalIsomorphismFromNaturalTransformations : NaturalIsomorphism F G
 naturalIsomorphismFromNaturalTransformations = record
-  { transform = record
-    { left = transform α
-    ; right = transform β
+  { transformIso = record
+    { right = transform α
+    ; left = transform β
     ; isIsomorphism = iso
     }
-  ; naturalityᴸ = naturality α
-  ; naturalityᴿ = naturality β
+  ; naturalityᴿ = naturality α
+  ; naturalityᴸ = naturality β
   }

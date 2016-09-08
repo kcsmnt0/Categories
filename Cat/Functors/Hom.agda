@@ -64,7 +64,29 @@ homProfunctor : ∀ {{C}} → Profunctor C C
 homProfunctor = homProfunctorUnderFunctors identityFunctor identityFunctor
 
 homFunctor : ∀ {{C}} → [ C ] → Functor C setoidCategory
-homFunctor = sndFunctor {{_}} homProfunctor -- weird
+homFunctor a = record
+  { transport = λ b → a ⇒ b
+  ; isFunctor = record
+    { map = λ g → record
+      { _$_ = g ∘_
+      ; cong-▸ = cong⟨ refl ∘_⟩
+      }
+    ; ≃-map-id = λ _ → idUnitᴸ
+    ; ≃-map-∘ = λ _ → assoc
+    ; ≃-map-cong = λ p _ → cong⟨ p ∘ refl ⟩
+    }
+  }
 
 homContrafunctor : ∀ {{C}} → [ C ] → Contrafunctor C setoidCategory
-homContrafunctor = fstFunctor homProfunctor
+homContrafunctor a = record
+  { transport = λ b → b ⇒ a
+  ; isFunctor = record
+    { map = λ f → record
+      { _$_ = _∘ f
+      ; cong-▸ = cong⟨_∘ refl ⟩
+      }
+    ; ≃-map-id = λ _ → idUnitᴿ
+    ; ≃-map-∘ = λ _ → sym assoc
+    ; ≃-map-cong = λ p _ → cong⟨ refl ∘ p ⟩
+    }
+  }

@@ -22,8 +22,8 @@ open TerminalObject
 
 terminalObjectUnique : (a b : TerminalObject) → terminus a ⇔ terminus b
 terminalObjectUnique a b = record
-  { left = to b
-  ; right = to a
+  { right = to b
+  ; left = to a
   ; isIsomorphism = record
     { cancelLR =
         begin

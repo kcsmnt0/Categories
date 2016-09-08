@@ -22,8 +22,8 @@ open InitialObject
 
 initialObjectUnique : ∀ a b → origin a ⇔ origin b
 initialObjectUnique a b = record
-  { left = from a
-  ; right = from b
+  { right = from a
+  ; left = from b
   ; isIsomorphism = record
     { cancelLR =
         begin

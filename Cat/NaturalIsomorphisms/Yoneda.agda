@@ -19,9 +19,9 @@ open NaturalTransformation
 instance
   yonedaNaturalIsomorphism : NaturalIsomorphism yonedaFunctor functorApplyFunctor
   yonedaNaturalIsomorphism = record
-    { transform = λ { {F , a} → record
-      { left = record { _$_ = λ α → transform α $ id ; cong-▸ = λ p → p _ } 
-      ; right = record
+    { transformIso = λ { {F , a} → record
+      { right = record { _$_ = λ α → transform α $ id ; cong-▸ = λ p → p _ } 
+      ; left = record
         { _$_ = λ x → record
           { transform = record { _$_ = λ g → map F g $ x ; cong-▸ = λ p → ≃-map-cong F p x }
           ; naturality = λ f g → S.sym (F ∙ _) (≃-map-∘ F x)
@@ -33,10 +33,10 @@ instance
         ; cancelRL = λ α f → S.trans (F ∙ _) (S.sym (F ∙ _) (naturality α f id)) (cong-▸ (transform α) idUnitᴿ)
         }
       } }
-    ; naturalityᴸ = λ { {F , a}  {G , b} (α , f) β →
+    ; naturalityᴿ = λ { {F , a}  {G , b} (α , f) β →
         cong-▸ (transform α)
             (S.trans (F ∙ _) (cong-▸ (transform β) (trans idUnitᴸ (sym idUnitᴿ))) (naturality β f id)) }
-    ; naturalityᴿ = λ { {F , a} {G , b} (α , f) x g →
+    ; naturalityᴸ = λ { {F , a} {G , b} (α , f) x g →
         S.trans (G ∙ _)
         (S.sym (G ∙ _) (naturality α g (map F f $ x)))
         (cong-▸ (transform α) (≃-map-∘ F _)) }
