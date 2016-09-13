@@ -1,13 +1,13 @@
 open import Cat.Category
 
-module Cat.Product {{C}} (a b : [ C ]) where
+module Cat.Product {{C}} where
 
 open import Data.Product
 
 open Category C
 
 record IsLeftProductFactor
-    {c c′ : [ C ]}
+    {a b c c′ : [ C ]}
     (fst : ⟨ c ⇒ a ⟩)
     (snd : ⟨ c ⇒ b ⟩)
     (fst′ : ⟨ c′ ⇒ a ⟩)
@@ -21,7 +21,7 @@ record IsLeftProductFactor
     rightProductFactorSndCommutes : snd′ ≃ snd ∘ rightProductFactor
     rightProductFactorUnique : ∀ {f : ⟨ c′ ⇒ c ⟩} → fst′ ≃ fst ∘ f → snd′ ≃ snd ∘ f → f ≃ rightProductFactor
 
-record IsProduct (c : [ C ]) : Set where
+record IsProduct (a b c : [ C ]) : Set where
   open IsLeftProductFactor
 
   field
@@ -39,9 +39,9 @@ record IsProduct (c : [ C ]) : Set where
       →
       rightProductFactor (factorProduct f g) ≃ rightProductFactor (factorProduct f′ g′)
 
-record Product : Set where
+record Product a b : Set where
   field
     product : [ C ]
-    isProduct : IsProduct product
+    isProduct : IsProduct a b product
 
   open IsProduct isProduct public

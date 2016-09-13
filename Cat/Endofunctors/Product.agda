@@ -51,7 +51,7 @@ fstFunctor {b} prod = record
     }
   }
   where
-    mapFactor : ∀ {a c} (f : ⟨ a ⇒ c ⟩) → IsLeftProductFactor c b _ _ _ _
+    mapFactor : ∀ {a c} (f : ⟨ a ⇒ c ⟩) → IsLeftProductFactor _ _ _ _
     mapFactor {a} {c} f = factorProduct (prod c) (f ∘ fst (prod a)) (snd (prod a))
 
     map : ∀ {a c} → ⟨ a ⇒ c ⟩ → ⟨ product (prod a) ⇒ product (prod c) ⟩
@@ -94,7 +94,7 @@ sndFunctor {a} prod = record
     }
   }
   where
-    mapFactor : ∀ {b c} (f : ⟨ b ⇒ c ⟩) → IsLeftProductFactor a c _ _ _ _
+    mapFactor : ∀ {b c} (f : ⟨ b ⇒ c ⟩) → IsLeftProductFactor _ _ _ _
     mapFactor {b} {c} f = factorProduct (prod c) (fst (prod b)) (f ∘ snd (prod b))
 
     map : ∀ {a c} → ⟨ a ⇒ c ⟩ → ⟨ product (prod a) ⇒ product (prod c) ⟩

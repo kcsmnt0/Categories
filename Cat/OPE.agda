@@ -7,7 +7,7 @@ open import Data.Vec
 
 open import Relation.Binary.PropositionalEquality
 
--- an order-preserving embedding between Vecs, or a witness to an injection
+-- an order-preserving embedding between Vecs, or a witness to an injective mapping
 data OPE {A} : ∀ {m n} → Vec A m → Vec A n → Set where
   stop : OPE [] []
   keep : ∀ {m n x} {xs : Vec A m} {ys : Vec A n} → OPE xs ys → OPE (x ∷ xs) (x ∷ ys)
@@ -19,6 +19,12 @@ opeId {xs = x ∷ xs} = keep opeId
 
 opeWeaken : ∀ {A n x} {xs : Vec A n} → OPE xs (x ∷ xs)
 opeWeaken = skip opeId
+
+opeElem : ∀ {A m n x} {xs : Vec A m} {ys : Vec A n} → OPE xs ys → x ∈ xs → x ∈ ys
+opeElem stop ()
+opeElem (keep p) here = here
+opeElem (keep p) (there elem) = there (opeElem p elem)
+opeElem (skip p) elem = there (opeElem p elem)
 
 opeFin : ∀ {A m n} {xs : Vec A m} {ys : Vec A n} → OPE xs ys → Fin m → Fin n
 opeFin (keep p) zero = zero
