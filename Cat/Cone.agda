@@ -18,7 +18,7 @@ record IsCone (c : [ C ]) : Set where
     coneMapCommutes : ∀ {a b} (f : ⟨ a ⇒ b ⟩) → map f ∘ coneMap ≃ coneMap
 
   instance
-    naturalTransformation : NaturalTransformation (Δ c) D
+    naturalTransformation : NaturalTransformation (δ c) D
     naturalTransformation = record
       { transform = coneMap
       ; naturality = λ f →

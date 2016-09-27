@@ -7,8 +7,8 @@ open import Cat.Functor
 open Category D
 
 instance
-  Δ : [ D ] → Functor C D
-  Δ x = record
+  constantFunctor : [ D ] → Functor C D
+  constantFunctor x = record
     { transport = λ _ → x
     ; isFunctor = record
       { map = λ _ → id
@@ -17,3 +17,5 @@ instance
       ; ≃-map-cong = λ _ → refl
       }
     }
+
+δ = constantFunctor

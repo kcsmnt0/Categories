@@ -8,7 +8,7 @@ module Cat.Cones.FromNaturalTransformation
   {{C D}}
   (a : [ D ])
   (F : Functor C D)
-  (α : NaturalTransformation (Δ a) F)
+  (α : NaturalTransformation (δ a) F)
   where
 
 open import Cat.Cone

@@ -41,7 +41,7 @@ coneMapFromQuiverCommutes (g ⟦∘⟧ f) =
     (quiverMap g ∘ quiverMap f) ∘ coneMap
   ∎
 
-naturalTransformation : NaturalTransformation (Δ apex) functorFromQuiver
+naturalTransformation : NaturalTransformation (δ apex) functorFromQuiver
 naturalTransformation = record
   { transform = transform naturalTransformationFromQuiver
   ; naturality = λ f → trans idUnitᴿ (coneMapFromQuiverCommutes f)

@@ -16,6 +16,9 @@ record _▸_ (A B : Setoid) : Set where
     _$_ : ⟨ A ⟩ → ⟨ B ⟩
     cong-▸ : ∀ {x y} → A ⟪ x ≈ y ⟫ → B ⟪ _$_ x ≈ _$_ y ⟫
 
+  infixl 1 _§_
+  _§_ = _$_
+
 open _▸_ public
 
 infixr 0 _↦_
